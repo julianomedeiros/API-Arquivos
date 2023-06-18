@@ -14,13 +14,18 @@ namespace API_Arquivos.Service
             _configuration = configuration;
         }
 
-        public async Task<ResponseViewModel> GET_GerarNovoExcel()
+        public async Task<ResponseViewModel> GET_GerarNovoExcel(decimal? qntPessoas = 1)
         {
             try
             {
+                if(qntPessoas <= 0)
+                {
+                    return await RetornoMensagem.RetornoErro(400, "O numero informado precisa ser maior que 0");
+                }
+
                 var lista = new List<ClienteViewModel>();
 
-                for (int i = 0; i < 1000; i++)
+                for (int i = 0; i <= qntPessoas; i++)
                 {
                     var cliente = new ClienteViewModel();
 

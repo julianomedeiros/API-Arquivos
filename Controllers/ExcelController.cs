@@ -22,14 +22,14 @@ namespace API_Arquivos.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(ResponseViewModel), (int)HttpStatusCode.OK)]
-        public async Task<IActionResult> GetTodosProcessos()
+        public async Task<IActionResult> GetTodosProcessos(decimal? qntPessoas = 1)
         {
 
             _logger.LogInformation((int)LogLevel.Information, "Método GET -  Api {0} ");
 
             try
             {
-                var resposta = await service.GET_GerarNovoExcel();
+                var resposta = await service.GET_GerarNovoExcel(qntPessoas);
                 return Ok(resposta);
             }
             catch (Exception ex)

@@ -36,18 +36,28 @@ namespace API_Arquivos.Model.SelectorRandomFake
 
 
 
-
-        public static short GET_GerarAgenciaBancaria()
+        /// <summary>
+        ///     Gerar numero Agencia Bancaria
+        /// </summary>
+        /// <remarks>
+        ///     Ele vai gerar um numero aleatório de 4 casas
+        /// </remarks>
+        public static int GET_GerarAgenciaBancaria()
         {
-            var agencia = new Faker<Bogus.DataSets.Finance>().Generate().Account().PadLeft(4, '0');
-            return short.Parse(agencia);
+            return new Random().Next(1000, 10000);
         }
 
 
+
+        /// <summary>
+        ///     Gerar numero Agencia Bancaria
+        /// </summary>
+        /// <remarks>
+        ///     Ele vai gerar um numero aleatório de 8 casas
+        /// </remarks>
         public static int GET_GerarContaBancaria()
         {
-            var conta = new Faker<Bogus.DataSets.Finance>().Generate().Account().PadLeft(8, '0');
-            return int.Parse(conta);
+            return new Random().Next(10000000, 100000000);
         }
 
 
@@ -56,11 +66,6 @@ namespace API_Arquivos.Model.SelectorRandomFake
         private class NomeAleatorio
         {
             public string FullName { get; set; }
-        }
-
-        private class DataAleatoria
-        {
-            public DateTime dataAniversario { get; set; }
         }
 
     }
