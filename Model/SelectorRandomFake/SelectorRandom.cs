@@ -1,6 +1,5 @@
 ﻿using Bogus;
 using Bogus.DataSets;
-using Faker;
 
 namespace API_Arquivos.Model.SelectorRandomFake
 {
@@ -15,9 +14,10 @@ namespace API_Arquivos.Model.SelectorRandomFake
         /// </remarks>
         public static string GET_GerarNomeAleatorio()
         {
-            var instancia = new Faker<Person>().Generate().FullName;
-            return instancia;
+            return new Faker<NomeAleatorio>()
+                .RuleFor(p => p.FullName, f => f.Person.FullName).Generate().FullName;
         }
+
 
 
         /// <summary>
@@ -28,24 +28,40 @@ namespace API_Arquivos.Model.SelectorRandomFake
         ///     para gerar a data de nascimento ele colocou uma data limite entre a data de nascimento de seus associados
         ///     Pegando os nacidos entre 01/01/1940 e 31/12/2005
         /// </remarks>
-        public static DateTime GET_GerarDataNascimento()
+        public static string GET_GerarDataNascimento()
         {
-            var instancia = new Faker<Date>().Generate().Between(new DateTime(1940, 1, 1), new DateTime(2005, 12, 31));
-            return instancia;
+            var dataNascimento = new Bogus.DataSets.Date().Between(new DateTime(1940, 1, 1), new DateTime(2005, 12, 31));
+            return dataNascimento.ToString("dd/MM/yyyy");
         }
+
+
 
 
         public static short GET_GerarAgenciaBancaria()
         {
-            var agencia = new Faker<Bogus.DataSets.Finance>().Generate().Account(4);
+            var agencia = new Faker<Bogus.DataSets.Finance>().Generate().Account().PadLeft(4, '0');
             return short.Parse(agencia);
         }
 
 
-        public static ushort GET_GerarContaBancaria()
+        public static int GET_GerarContaBancaria()
         {
-            var conta = new Faker<Bogus.DataSets.Finance>().Generate().Account(8);
-            return ushort.Parse(conta);
+            var conta = new Faker<Bogus.DataSets.Finance>().Generate().Account().PadLeft(8, '0');
+            return int.Parse(conta);
         }
+
+
+
+
+        private class NomeAleatorio
+        {
+            public string FullName { get; set; }
+        }
+
+        private class DataAleatoria
+        {
+            public DateTime dataAniversario { get; set; }
+        }
+
     }
 }

@@ -4,6 +4,6 @@ namespace API_Arquivos.Service.Interface
 {
     public interface IExcelService
     {
-        Task<ResponseViewModel> POST_GerarNovoExcel();
+        Task<ResponseViewModel> GET_GerarNovoExcel();
     }
 }

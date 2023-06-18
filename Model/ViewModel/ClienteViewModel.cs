@@ -3,8 +3,8 @@
     public class ClienteViewModel
     {
         public string Nome { get; set; }
-        public DateTime DataNascimento { get; set; }
+        public string DataNascimento { get; set; }
         public short AgenciaBancaria { get; set; }
-        public ushort ContaBancaria { get; set; }
+        public int ContaBancaria { get; set; }
     }
 }

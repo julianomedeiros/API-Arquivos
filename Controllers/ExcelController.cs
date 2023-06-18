@@ -29,7 +29,7 @@ namespace API_Arquivos.Controllers
 
             try
             {
-                var resposta = await service.POST_GerarNovoExcel();
+                var resposta = await service.GET_GerarNovoExcel();
                 return Ok(resposta);
             }
             catch (Exception ex)

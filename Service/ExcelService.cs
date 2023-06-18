@@ -14,7 +14,7 @@ namespace API_Arquivos.Service
             _configuration = configuration;
         }
 
-        public async Task<ResponseViewModel> POST_GerarNovoExcel()
+        public async Task<ResponseViewModel> GET_GerarNovoExcel()
         {
             try
             {
